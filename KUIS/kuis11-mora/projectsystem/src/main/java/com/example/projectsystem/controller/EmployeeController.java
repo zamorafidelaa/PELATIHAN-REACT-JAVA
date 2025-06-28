@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.*;
 
 import com.example.projectsystem.model.Employee;
 import com.example.projectsystem.repository.EmployeeRepository;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @RestController
 @RequestMapping("/employee")
@@ -37,6 +39,23 @@ public class EmployeeController {
             response.put("data", employee);
         }
         return response;
+    }
+
+    // search
+    @GetMapping("/search/{name}")
+    public List<Employee> searchByName(@PathVariable String name) {
+        return employeeRepository.findByNameContainingIgnoreCase(name);
+    }
+
+    // sorting
+    @GetMapping("/sort/asc")
+    public List<Employee> sortByNameAsc() {
+        return employeeRepository.findAllByOrderByNameAsc();
+    }
+
+    @GetMapping("/sort/desc")
+    public List<Employee> sortByNameDesc() {
+        return employeeRepository.findAllByOrderByNameDesc();
     }
 
     @PostMapping("/add")
