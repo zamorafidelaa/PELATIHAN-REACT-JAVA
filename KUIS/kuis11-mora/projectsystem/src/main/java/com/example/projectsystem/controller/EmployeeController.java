@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.*;
 import com.example.projectsystem.model.Employee;
 import com.example.projectsystem.repository.EmployeeRepository;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 @RestController
 @RequestMapping("/employee")
